@@ -1,7 +1,6 @@
 function y = SEIR(params, x)
     beta = params(1);
     E0 = params(2);
-    M = max(x);
     
     sigma = 0.196; % 1/(5.1 days), the average latent period of COVID-19 
     gamma = 0.071; % 1/(14 days), the average time from symptom onset to recovery (WHO)
@@ -12,5 +11,5 @@ function y = SEIR(params, x)
                   gamma*y(3)                   % dR/dt = gamma*I
                  ];
 
-    [t,y] = ode45(ode, 1:M, [1-E0 E0 0 0]); 
+    [t,y] = ode45(ode, 1:max(x), [1-E0 E0 0 0]); 
 
